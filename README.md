@@ -1,4 +1,4 @@
-Benchmark is developed from scatch in C++. Please refer to this JIRA: https://jira.qualcomm.com/jira/browse/ST-792 for more insight. The benchmark is heavily inspired from
+Benchmark is developed from scatch in C++. The benchmark is heavily inspired from
 the Yahoo TeraSort and Hadoop MapReduce algorithm. Please refer links (1) to (3) below references.
 
 ###Example Usage
