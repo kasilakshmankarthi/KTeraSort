@@ -3,30 +3,30 @@ the Yahoo TeraSort and Hadoop MapReduce algorithm. Please refer links (1) to (3)
 
 ###Example Usage
 
-####1. QRandomGen
+####1. KRandomGen
 Generates random numbers using LFSR. Creates 3 binary files each using different seed value.
 The format of the file created is input\-\<No of keys generated\>.1bin
 
-./QRandomGen\.\<platform\>\.\<compiler\>.elf \<Num of outputs (keys) to be generated\>
+./KRandomGen\.\<platform\>\.\<compiler\>.elf \<Num of outputs (keys) to be generated\>
 
 Example: <br/>
 cd binaries <br/>
-./QRandomGen.x86_64.ivybridge.g++.6.2.0.linux.elf 16384 <br/>
+./KRandomGen.x86_64.ivybridge.g++.6.2.0.linux.elf 16384 <br/>
 
-####2. QSortRnd
+####2. KSortRnd
 Sorts the input file. If --test=sanity, then the sorted output is validated using std::is_sorted()
 
 Following performance metrics are printed out:
 - nKeys/Sort Time (sorts/sec)
 
-./QSortRnd\.\<platform\>\.\<compiler\>.elf --test=\<sort/sanity/all\> \<input file\> \<Num of keys in the file\> \<Enable\(1\)/Disable \(0\) angel signals\>
+./KSortRnd\.\<platform\>\.\<compiler\>.elf --test=\<sort/sanity/all\> \<input file\> \<Num of keys in the file\> \<Enable\(1\)/Disable \(0\) angel signals\>
 
 Example:
 cd binaries <br/>
-./QSortRnd.x86_64.ivybridge.g++.6.2.0.linux.elf --test=sort ../inputs/input-16384.1bin 16384 0 (To run test) <br/>
-./QSortRnd.x86_64.ivybridge.g++.6.2.0.linux.elf --test=sanity ../inputsinput-16384.1bin 16384 0 (To run test and perform validation) <br/>
+./KSortRnd.x86_64.ivybridge.g++.6.2.0.linux.elf --test=sort ../inputs/input-16384.1bin 16384 0 (To run test) <br/>
+./KSortRnd.x86_64.ivybridge.g++.6.2.0.linux.elf --test=sanity ../inputsinput-16384.1bin 16384 0 (To run test and perform validation) <br/>
 
-####3. QTeraSort
+####3. KTeraSort
 Reads the generated input file created by Step 1 above. Sorts the input file and uses the stride to create
 (nBuckets) split points. Builds a Trie using the split points. Partitions the unsorted input file using Trie lookup. The leaf node of Trie provides the bucket id in which the given
 key has to be placed. If --test=sanity, then std::minmax_element() is run on each bucket and then the minima and maxima of each bucket is tested for uniqueness and less than
@@ -38,12 +38,12 @@ Following performance metrics are printed out:
 - nKeys/Sort Time (sorts/sec)
 - nKeys/Partition Time (nKeys/sec)
 
-./QTeraSort\.\<platform\>\.\<compiler\>.elf --test=\<partition/sanity/all\> \<input file\> \<Num of keys in the file\> \<Num of buckets or partitions\> \<Enable\(1\)/Disable \(0\) angel signals\>
+./KTeraSort\.\<platform\>\.\<compiler\>.elf --test=\<partition/sanity/all\> \<input file\> \<Num of keys in the file\> \<Num of buckets or partitions\> \<Enable\(1\)/Disable \(0\) angel signals\>
 
 Example: <br/>
 cd binaries <br/>
-./QTeraSort.x86_64.ivybridge.g++.6.2.0.linux.elf --test=partition ../inputs/input-16384.1bin 16384 100 0 (To run test) <br/>
-./QTeraSort.x86_64.ivybridge.g++.6.2.0.linux.elf --test=sanity ../inputs/input-16384.1bin 16384 100 0 (To run test and perform validation) <br/>
+./KTeraSort.x86_64.ivybridge.g++.6.2.0.linux.elf --test=partition ../inputs/input-16384.1bin 16384 100 0 (To run test) <br/>
+./KTeraSort.x86_64.ivybridge.g++.6.2.0.linux.elf --test=sanity ../inputs/input-16384.1bin 16384 100 0 (To run test and perform validation) <br/>
 
 ###References
 1. http://sortbenchmark.org/YahooHadoop.pdf
